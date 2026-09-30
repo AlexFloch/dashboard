@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background: #09090b;
+    color: #e4e4e7;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #09090b; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  ::selection { background: rgba(59,130,246,0.3); }
+}
+
+@layer components {
+  .card {
+    background: rgba(24,24,27,0.8);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+  }
+  .card-hover { transition: all 0.25s ease; }
+  .card-hover:hover { border-color: rgba(255,255,255,0.12); background: rgba(30,30,35,0.9); }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-medium;
+  }
+  .badge-green { @apply badge bg-emerald-500/15 text-emerald-400 border border-emerald-500/20; }
+  .badge-red { @apply badge bg-red-500/15 text-red-400 border border-red-500/20; }
+  .badge-blue { @apply badge bg-blue-500/15 text-blue-400 border border-blue-500/20; }
+  .badge-amber { @apply badge bg-amber-500/15 text-amber-400 border border-amber-500/20; }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-500 hover:text-zinc-200
+    hover:bg-white/5 transition-all duration-200 cursor-pointer;
+  }
+  .nav-item.active {
+    @apply text-white bg-white/10 border border-white/10;
+  }
+
+  .table-row {
+    @apply border-b border-white/[0.04] hover:bg-white/[0.025] transition-colors duration-150;
+  }
+}
+
+/* Sidebar gradient */
+.sidebar-gradient { background: linear-gradient(180deg, #0f0f12 0%, #09090b 100%); }
+
+/* Status dot pulse */
+@keyframes statusPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.status-pulse { animation: statusPulse 2s ease-in-out infinite; }
+
+/* Shimmer for loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Chart tooltip */
+.recharts-tooltip-wrapper .custom-tooltip {
+  background: rgba(24,24,27,0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
